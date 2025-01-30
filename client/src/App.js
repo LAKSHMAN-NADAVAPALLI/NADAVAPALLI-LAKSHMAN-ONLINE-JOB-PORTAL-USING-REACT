@@ -12,6 +12,8 @@ import AdminDashboard from './pages/AdminDashboard';
 import AdminJobManagement from './pages/AdminJobManagement';
 import EmployerDashboard from './pages/EmployerDashboard';
 import JobseekerDashboard from './pages/JobseekerDashboard';
+import About from './pages/About';
+import Contact from './pages/cantact';
 
 // Importing components
 import ChatWindow from './components/ChatWindow';
@@ -36,6 +38,10 @@ function App() {
           <Route path="/adminjobs" element={<AdminJobManagement />} />
           <Route path="/employer-dashboard" element={<EmployerDashboard />} />
           <Route path="/jobseeker-dashboard" element={<JobseekerDashboard />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/contact" element={<Contact />} />
+
+
         </Routes>
       </div>
     </Router>

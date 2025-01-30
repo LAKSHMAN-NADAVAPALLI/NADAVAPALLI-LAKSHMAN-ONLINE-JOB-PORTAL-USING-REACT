@@ -26,7 +26,7 @@ body {
 /* Custom page-specific background styles */
 body.home-page {
   background-color: #f99797;
-  min-height: 500vh;
+  min-height: 150vh;
    
 }
 

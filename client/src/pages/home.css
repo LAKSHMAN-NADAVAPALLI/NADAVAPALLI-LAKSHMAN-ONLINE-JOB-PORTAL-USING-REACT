@@ -67,3 +67,23 @@
   transform: scale(1.05);
   opacity: 0.9;
 }
+.image-section {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 2rem;
+  flex-wrap: wrap;
+}
+
+.job-image {
+  width: 22%;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s;
+}
+
+.job-image:hover {
+  transform: scale(1.05);
+}
+
