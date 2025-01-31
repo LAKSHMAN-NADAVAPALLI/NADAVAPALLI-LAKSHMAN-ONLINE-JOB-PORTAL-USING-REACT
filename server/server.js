@@ -20,29 +20,24 @@ const app = express();
 
 // Middleware
 app.use(express.json());
+const allowedOrigins = [process.env.FRONTEND_URL || 'http://localhost:3000'];
 app.use(cors({
-  origin: 'http://localhost:3000', 
-  credentials: true,                
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'],  
+  origin: allowedOrigins,
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'],
 }));
 
 app.use(cookieParser());
 app.use(helmet());
 app.use(morgan('dev'));
 
-// Disable caching globally
+// Disable caching globally, allow static assets caching
 app.use((req, res, next) => {
   res.setHeader('Cache-Control', 'no-store');
   next();
 });
-app.get("/", (req, res) => {
-  res.send("Server is running successfully on Vercel!");
-});
 
-// Constants
-const PORT = process.env.PORT || 5001;
-
-// Routes
+// API Routes
 app.use('/api/employer', authRoutes);
 app.use('/api/jobseeker', jslRoutes);
 
@@ -62,7 +57,14 @@ app.post('/api/admin/login-password', adminController.loginWithPassword);
 app.use(errorHandler);
 
 // Serve static files from React app's build folder
-app.use(express.static(path.join(__dirname, 'client/build')));
+app.use(express.static(path.join(__dirname, 'client/build'), {
+  maxAge: '1y',
+  setHeaders: (res, path) => {
+    if (path.endsWith('.html')) {
+      res.setHeader('Cache-Control', 'no-store');
+    }
+  }
+}));
 
 // React routing - return index.html for all non-API routes
 app.get('*', (req, res) => {
@@ -72,8 +74,8 @@ app.get('*', (req, res) => {
 const startServer = async () => {
   try {
     await connectDB();
-    app.listen(PORT, () => {
-      console.log(`🚀 Server running on http://localhost:${PORT}`);
+    app.listen(process.env.PORT || 5001, () => {
+      console.log(`🚀 Server running on http://localhost:${process.env.PORT || 5001}`);
     });
   } catch (error) {
     console.error('Error starting server:', error.message);
@@ -82,7 +84,8 @@ const startServer = async () => {
 
 startServer();
 
-process.on('SIGINT', () => {
+process.on('SIGINT', async () => {
   console.log('Shutting down gracefully...');
+  // Ensure DB disconnect or any other cleanups
   process.exit();
 });
