@@ -140,9 +140,6 @@ const getEmployerProfile = async (req, res) => {
   }
 };
 
-
-
-
 // Update employer profile
 const updateEmployerProfile = async (req, res) => {
   try {
@@ -152,13 +149,7 @@ const updateEmployerProfile = async (req, res) => {
       return res.status(400).json({ error: 'Invalid request: Email not found in token' });
     }
 
-    const { name, address, phoneNumber, dob } = req.body; 
-    let profilePicture = null; 
-
-    // Check if a file was uploaded
-    if (req.file) {
-      profilePicture = req.file.path; // Use the correct file path property 
-    }
+    const { name, address, phoneNumber, dob, profilePicture } = req.body; 
 
     // Validation
     if (!name || !address || !phoneNumber || !dob) {
@@ -167,7 +158,7 @@ const updateEmployerProfile = async (req, res) => {
 
     // Update data object
     const updateData = { name, address, phoneNumber, dob };
-    if (profilePicture) {
+    if (profilePicture && profilePicture !== 'default-placeholder.webp') {
       updateData.profilePicture = profilePicture;
     }
 
@@ -190,6 +181,7 @@ const updateEmployerProfile = async (req, res) => {
     res.status(500).json({ error: 'Server error.' });
   }
 };
+
 
 
 

@@ -7,7 +7,7 @@ const EmployerDashboard = () => {
   const [employerData, setEmployerData] = useState({
     name: "",
     email: "",
-    profilePicture: "",
+    profilePicture: "default-placeholder.webp", // Default image
     dob: "",
     address: "",
     phoneNumber: "",
@@ -80,7 +80,7 @@ const EmployerDashboard = () => {
     try {
       const formData = new FormData();
       formData.append("name", employerData.name);
-      if (profilePicture) formData.append("profilePicture", profilePicture);
+      if (profilePicture) formData.append("profilePicture", profilePicture); // Only include file if uploaded
       if (editing) {
         formData.append("dob", employerData.dob);
         formData.append("address", employerData.address);
@@ -113,7 +113,7 @@ const EmployerDashboard = () => {
   };
 
   const handleFileChange = (e) => {
-    setProfilePicture(e.target.files[0]);
+    <p>No photo selected. Default image is used.</p>
   };
 
   if (loading) return <div>Loading...</div>;
@@ -124,7 +124,7 @@ const EmployerDashboard = () => {
       <div className="employerprofile-picture-container">
         <img
           src={
-            employerData.profilePicture
+            employerData.profilePicture && employerData.profilePicture !== 'default-placeholder.webp'
               ? `http://localhost:5001/${employerData.profilePicture}`
               : `http://localhost:5001/uploads/default-placeholder.webp`
           }
@@ -132,6 +132,9 @@ const EmployerDashboard = () => {
           className="employerprofile-picture"
           onError={() => console.error("Error loading profile picture")}
         />
+        {employerData.profilePicture === 'default-placeholder.webp' && (
+          <p>No photo selected. Default image is used.</p>
+        )}
       </div>
       <h2>Employer Dashboard</h2>
       {!editing ? (
@@ -205,7 +208,6 @@ const EmployerDashboard = () => {
       )}
   
       <div>
-        
         <h3> Jobs Monitoring</h3>
         {jobs.length > 0 ? (
           <ul className="employerjobs-list">

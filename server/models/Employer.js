@@ -8,7 +8,7 @@ const employerSchema = new mongoose.Schema({
   isActive: { type: Boolean, default: true },
   isBlocked: { type: Boolean, default: false },
   
-  profilePicture: { type: String, default: null }, // URL for the profile picture
+  profilePicture: { type: String, default: 'default-placeholder.webp' }, // URL for the profile picture
   dob: { type: Date },
   address: { type: String },
   phoneNumber: { type: String },
