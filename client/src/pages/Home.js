@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react'; // Removed useState import
 import { useNavigate } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
@@ -9,7 +9,6 @@ import job3 from '../assets/job3.jpg';
 import job4 from '../assets/job4.webp';
 
 const Home = () => {
-  const [role, setRole] = useState(null);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -21,7 +20,6 @@ const Home = () => {
   }, []);
 
   const handleRoleChange = (role) => {
-    setRole(role);
     if (role === 'admin') {
       navigate('/admin/login');
     } else if (role === 'employer') {

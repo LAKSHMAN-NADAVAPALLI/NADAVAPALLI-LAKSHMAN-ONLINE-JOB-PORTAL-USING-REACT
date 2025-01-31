@@ -25,7 +25,6 @@ const JobseekerDashboard = () => {
     phoneNumber: "",
     education: "",
   });
-  const [appliedJob, setAppliedJob] = useState(null); // To track the applied job for canceling application
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -87,10 +86,8 @@ const JobseekerDashboard = () => {
       await axios.post(
         "http://localhost:5001/api/jobseeker/jobs/cancel",
         { id: String(jobId) },
-        
         { headers: { Authorization: `Bearer ${token}` } }
       );
-      console.log(jobId) ;
       setJobseekerData((prev) => ({
         ...prev,
         applications: prev.applications.filter((id) => id !== jobId),
@@ -117,7 +114,6 @@ const JobseekerDashboard = () => {
         ...prev,
         applications: [...prev.applications, applyingJobId],
       }));
-      setAppliedJob(applyingJobId); // Track applied job
       setApplyingJobId(null); // Reset applying job id
     } catch (err) {
       console.error("Error applying for job:", err);
