@@ -35,7 +35,9 @@ app.use((req, res, next) => {
   res.setHeader('Cache-Control', 'no-store');
   next();
 });
-
+app.get("/", (req, res) => {
+  res.send("Server is running successfully on Vercel!");
+});
 // Constants
 const PORT = process.env.PORT || 5001;
 
