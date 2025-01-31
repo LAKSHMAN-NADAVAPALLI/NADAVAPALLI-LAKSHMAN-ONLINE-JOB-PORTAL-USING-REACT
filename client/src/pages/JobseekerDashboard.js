@@ -17,7 +17,7 @@ const JobseekerDashboard = () => {
   const [editing, setEditing] = useState(false);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [profilePicture, setProfilePicture] = useState(null);
+  const [profilePicture] = useState(null);
   
   useEffect(() => {
     const token = localStorage.getItem("token");
