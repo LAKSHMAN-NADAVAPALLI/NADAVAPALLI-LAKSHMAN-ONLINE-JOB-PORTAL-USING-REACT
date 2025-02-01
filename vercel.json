@@ -9,18 +9,18 @@
       "src": "client/package.json",
       "use": "@vercel/static-build",
       "config": {
-        "distDir": "build"
+        "distDir": "build"  // Ensures the React build folder is used
       }
     }
   ],
   "routes": [
     {
       "src": "/api/(.*)",
-      "dest": "server/server.js"
+      "dest": "server/server.js"  // API requests are routed to the serverless function
     },
     {
       "src": "/(.*)",
-      "dest": "/build/$1"
+      "dest": "/build/$1"  // All other requests go to the React app's build folder
     }
   ]
 }
