@@ -1,9 +1,4 @@
 {
-  "functions": {
-    "api/index.js": {
-      "runtime": "@vercel/node"
-    }
-  },
   "builds": [
     {
       "src": "server/server.js",
