@@ -1,5 +1,9 @@
 {
-  "version": 2,
+  "functions": {
+    "api/index.js": {
+      "runtime": "@vercel/node"
+    }
+  },
   "builds": [
     {
       "src": "server/server.js",
@@ -9,18 +13,18 @@
       "src": "client/package.json",
       "use": "@vercel/static-build",
       "config": {
-        "distDir": "build"  
+        "distDir": "build"
       }
     }
   ],
   "routes": [
     {
       "src": "/api/(.*)",
-      "dest": "server/server.js"  
+      "dest": "server/server.js"
     },
     {
       "src": "/(.*)",
-      "dest": "/build/$1"  
+      "dest": "client/build/$1"
     }
   ]
 }
