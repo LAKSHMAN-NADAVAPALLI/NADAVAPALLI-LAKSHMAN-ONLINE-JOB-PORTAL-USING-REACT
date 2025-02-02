@@ -41,5 +41,12 @@
       "last 1 safari version"
     ]
   },
-  "homepage": "https://nadavapalli-lakshman-online-job-portal-using-react-finalf.vercel.app"
+  "homepage": "https://nadavapalli-lakshman-online-job-portal-using-react-finalf.vercel.app",
+  "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+    "@rollup/plugin-terser": "^0.4.4",
+    "eslint": "^9.19.0",
+    "eslint-config-react-app": "^7.0.1",
+    "rimraf": "^6.0.1"
+  }
 }
