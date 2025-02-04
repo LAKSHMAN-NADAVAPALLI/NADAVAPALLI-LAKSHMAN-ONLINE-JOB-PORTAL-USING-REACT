@@ -18,7 +18,11 @@ const app = express();
 
 // Middleware
 app.use(express.json());
-const allowedOrigins = [process.env.FRONTEND_URL || 'http://localhost:3000'];
+const allowedOrigins = [
+  process.env.FRONTEND_URL || 'http://localhost:3000',
+  'https://nadavapalli-lakshman-online-job-portal-using-react-6hdd.vercel.app'  // Add your Vercel frontend URL here
+];
+
 app.use(cors({
   origin: allowedOrigins,
   credentials: true,
@@ -46,7 +50,6 @@ app.post('/api/admin/login-password', adminController.loginWithPassword);
 app.use('/uploads', express.static('uploads'));
 
 // Error Handling Middleware
-
 app.use((err, req, res, next) => {
   console.error('🔥 Unhandled Error:', err.stack || err.message || err);
   res.status(err.status || 500).json({
@@ -63,9 +66,9 @@ const startServer = async () => {
   try {
     await connectDB();
     const PORT = process.env.PORT || 10000; // Default to 10000 if PORT is not defined
-app.listen(PORT, () => {
-  console.log(`🚀 Server running on port ${PORT}`);
-});
+    app.listen(PORT, () => {
+      console.log(`🚀 Server running on port ${PORT}`);
+    });
   } catch (error) {
     console.error('Error starting server:', error.message);
   }
