@@ -50,7 +50,7 @@ const JobseekerDashboard = () => {
 
   const fetchJobseekerProfile = async (email, token) => {
     try {
-      const response = await axios.get("http://localhost:5001/api/jobseeker/profile", {
+      const response = await axios.get("https://nadavapalli-lakshman-online-job-portal.onrender.com/api/jobseeker/profile", {
         headers: { Authorization: `Bearer ${token}` },
       });
       setJobseekerData(response.data);
@@ -64,7 +64,7 @@ const JobseekerDashboard = () => {
 
   const fetchJobs = async (token) => {
     try {
-      const response = await axios.get("http://localhost:5001/api/admin/jobs", {
+      const response = await axios.get("https://nadavapalli-lakshman-online-job-portal.onrender.com/api/admin/jobs", {
         headers: { Authorization: `Bearer ${token}` },
       });
       setJobs(response.data);
@@ -85,7 +85,7 @@ const JobseekerDashboard = () => {
 
     try {
       await axios.post(
-        "http://localhost:5001/api/jobseeker/jobs/cancel",
+        "https://nadavapalli-lakshman-online-job-portal.onrender.com/api/jobseeker/jobs/cancel",
         { id: String(jobId) },
         
         { headers: { Authorization: `Bearer ${token}` } }
@@ -109,7 +109,7 @@ const JobseekerDashboard = () => {
 
     try {
       await axios.post(
-        "http://localhost:5001/api/jobseeker/jobs/apply",
+        "https://nadavapalli-lakshman-online-job-portal.onrender.com/api/jobseeker/jobs/apply",
         { id: applyingJobId, ...applicationDetails },
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -137,7 +137,7 @@ const JobseekerDashboard = () => {
       formData.append("phoneNumber", jobseekerData.phoneNumber);
 
       const response = await axios.put(
-        "http://localhost:5001/api/jobseeker/profile",
+        "https://nadavapalli-lakshman-online-job-portal.onrender.com/api/jobseeker/profile",
         formData,
         {
           headers: {
@@ -175,8 +175,8 @@ const JobseekerDashboard = () => {
           <img
             src={
               jobseekerData.profilePicture
-                ? `http://localhost:5001/${jobseekerData.profilePicture}`
-                : `http://localhost:5001/uploads/default-placeholder.webp`
+                ? `https://nadavapalli-lakshman-online-job-portal.onrender.com/${jobseekerData.profilePicture}`
+                : `https://nadavapalli-lakshman-online-job-portal.onrender.com/uploads/default-placeholder.webp`
             }
             alt="Profile"
             className="profile-picture"

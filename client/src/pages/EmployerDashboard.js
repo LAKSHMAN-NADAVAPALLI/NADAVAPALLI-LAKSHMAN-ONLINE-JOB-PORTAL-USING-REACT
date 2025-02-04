@@ -42,7 +42,7 @@ const EmployerDashboard = () => {
   const fetchEmployerProfile = async (email, token) => {
     try {
       const response = await axios.get(
-        `http://localhost:5001/api/employer/profile?t=${new Date().getTime()}`,
+        `https://nadavapalli-lakshman-online-job-portal.onrender.com/api/employer/profile?t=${new Date().getTime()}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -61,7 +61,7 @@ const EmployerDashboard = () => {
   const fetchJobs = async (token) => {
     try {
       const response = await axios.get(
-        "http://localhost:5001/api/admin/jobs",
+        "https://nadavapalli-lakshman-online-job-portal.onrender.com/api/admin/jobs",
         {
           headers: { Authorization: `Bearer ${token}` },
         }
@@ -88,7 +88,7 @@ const EmployerDashboard = () => {
       }
 
       const response = await axios.put(
-        `http://localhost:5001/api/employer/profile?t=${new Date().getTime()}`,
+        `https://nadavapalli-lakshman-online-job-portal.onrender.com/api/employer/profile?t=${new Date().getTime()}`,
         formData,
         {
           headers: {
@@ -125,8 +125,8 @@ const EmployerDashboard = () => {
         <img
           src={
             employerData.profilePicture
-              ? `http://localhost:5001/${employerData.profilePicture}`
-              : `http://localhost:5001/uploads/default-placeholder.webp`
+              ? `https://nadavapalli-lakshman-online-job-portal.onrender.com/${employerData.profilePicture}`
+              : `https://nadavapalli-lakshman-online-job-portal.onrender.com/uploads/default-placeholder.webp`
           }
           alt="Profile"
           className="employerprofile-picture"

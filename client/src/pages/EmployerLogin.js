@@ -20,7 +20,7 @@ const EmployerLogin = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.post('http://localhost:5001/api/employer/login', { email, password });
+      const response = await axios.post('https://nadavapalli-lakshman-online-job-portal.onrender.com/api/employer/login', { email, password });
 
       if (response.data && response.data.message === 'Login successful') {
         alert('Login successful!');

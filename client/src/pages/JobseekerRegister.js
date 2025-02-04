@@ -21,7 +21,7 @@ const JobseekerRegister = () => {
       return;
     }
     try {
-      const response = await axios.post('http://localhost:5001/api/jobseeker/register', { name, email, password });
+      const response = await axios.post('https://nadavapalli-lakshman-online-job-portal.onrender.com/api/jobseeker/register', { name, email, password });
       setSuccess(response.data.message);
       // Redirect to login after successful registration
       setTimeout(() => {

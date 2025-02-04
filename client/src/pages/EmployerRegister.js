@@ -21,7 +21,7 @@ const EmployerRegister = () => {
     }
 
     try {
-      const response = await axios.post('http://localhost:5001/api/employer/register', { name, email, password });
+      const response = await axios.post('https://nadavapalli-lakshman-online-job-portal.onrender.com/api/employer/register', { name, email, password });
 
       // Show success message
       setSuccess('Registration successful! Redirecting to employer login...');

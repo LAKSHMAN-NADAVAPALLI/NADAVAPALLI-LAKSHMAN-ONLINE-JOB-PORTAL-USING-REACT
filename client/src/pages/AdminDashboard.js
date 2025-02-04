@@ -28,8 +28,8 @@ const AdminDashboard = () => {
     setLoading(true);
     try {
       const [employersResponse, jobSeekersResponse] = await Promise.all([
-        axios.get('http://localhost:5001/api/admin/employers'),
-        axios.get('http://localhost:5001/api/admin/jobseekers'),
+        axios.get('https://nadavapalli-lakshman-online-job-portal.onrender.com/api/admin/employers'),
+        axios.get('https://nadavapalli-lakshman-online-job-portal.onrender.com/api/admin/jobseekers'),
       ]);
       setEmployers(employersResponse.data);
       setJobSeekers(jobSeekersResponse.data);
@@ -48,8 +48,8 @@ const AdminDashboard = () => {
       try {
         const endpoint =
           role === 'Employer'
-            ? `http://localhost:5001/api/admin/employer/${email}/${action}`
-            : `http://localhost:5001/api/admin/jobseeker/${email}/${action}`;
+            ? `https://nadavapalli-lakshman-online-job-portal.onrender.com/api/admin/employer/${email}/${action}`
+            : `https://nadavapalli-lakshman-online-job-portal.onrender.com/api/admin/jobseeker/${email}/${action}`;
         setLoading(true);
         const response = await axios.patch(endpoint);
         if (response.status === 200) {
@@ -94,8 +94,8 @@ const AdminDashboard = () => {
     try {
       const endpoint =
         selectedUser.role === 'Employer'
-          ? `http://localhost:5001/api/admin/employer/${selectedUser.email}/password`
-          : `http://localhost:5001/api/admin/jobseeker/${selectedUser.email}/password`;
+          ? `https://nadavapalli-lakshman-online-job-portal.onrender.com/api/admin/employer/${selectedUser.email}/password`
+          : `https://nadavapalli-lakshman-online-job-portal.onrender.com/api/admin/jobseeker/${selectedUser.email}/password`;
       setLoading(true);
       const response = await axios.put(endpoint, { newPassword });
       if (response.status === 200) {

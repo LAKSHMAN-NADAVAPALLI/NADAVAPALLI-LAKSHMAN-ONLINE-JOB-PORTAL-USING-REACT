@@ -24,7 +24,7 @@ const AdminLogin = () => {
     setLoading(true);
 
     try {
-      const response = await axios.post('http://localhost:5001/api/admin/login-password', { emailOrPhone, password });
+      const response = await axios.post('https://nadavapalli-lakshman-online-job-portal.onrender.com/api/admin/login-password', { emailOrPhone, password });
       alert(response.data.message || 'Login successful');
       navigate('/admin-dashboard');
     } catch (err) {

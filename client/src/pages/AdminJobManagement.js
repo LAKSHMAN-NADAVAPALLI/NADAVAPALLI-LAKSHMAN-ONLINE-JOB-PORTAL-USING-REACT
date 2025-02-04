@@ -22,7 +22,7 @@ const AdminJobManagement = () => {
   const fetchJobs = async () => {
     setLoading(true);
     try {
-      const response = await axios.get('http://localhost:5001/api/admin/jobs');
+      const response = await axios.get('https://nadavapalli-lakshman-online-job-portal.onrender.com/api/admin/jobs');
       setJobs(response.data);
     } catch (error) {
       console.error('Error fetching jobs:', error.message);
@@ -35,7 +35,7 @@ const AdminJobManagement = () => {
   // Fetch applicants for a specific job
   const fetchApplicants = async (id) => {
     try {
-      const response = await axios.get(`http://localhost:5001/api/admin/jobs/${id}/applicants`);
+      const response = await axios.get(`https://nadavapalli-lakshman-online-job-portal.onrender.com/api/admin/jobs/${id}/applicants`);
       setApplicants(response.data.applicants);
     } catch (error) {
       console.error('Error fetching applicants:', error.message);
@@ -62,12 +62,12 @@ const AdminJobManagement = () => {
 
       if (editingJob) {
         // PATCH request to update only provided fields
-        const response = await axios.patch(`http://localhost:5001/api/admin/jobs/${editingJob._id}`, formData);
+        const response = await axios.patch(`https://nadavapalli-lakshman-online-job-portal.onrender.com/api/admin/jobs/${editingJob._id}`, formData);
         setJobs(jobs.map((job) => (job._id === editingJob._id ? response.data : job)));
         alert('Job updated successfully');
       } else {
         // POST request to add a new job
-        const response = await axios.post('http://localhost:5001/api/admin/jobs', formData);
+        const response = await axios.post('https://nadavapalli-lakshman-online-job-portal.onrender.com/api/admin/jobs', formData);
         setJobs([...jobs, response.data]);
         alert('Job added successfully');
       }
@@ -86,7 +86,7 @@ const AdminJobManagement = () => {
     if (!window.confirm('Are you sure you want to delete this job?')) return;
     setLoading(true);
     try {
-      await axios.delete(`http://localhost:5001/api/admin/jobs/${id}`);
+      await axios.delete(`https://nadavapalli-lakshman-online-job-portal.onrender.com/api/admin/jobs/${id}`);
       setJobs(jobs.filter((job) => job._id !== id));
       alert('Job deleted successfully');
     } catch (error) {

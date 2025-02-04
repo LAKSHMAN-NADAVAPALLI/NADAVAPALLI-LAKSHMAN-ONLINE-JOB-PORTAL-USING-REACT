@@ -13,7 +13,7 @@ const JobseekerLogin = () => {
     e.preventDefault();
     setError('');
     try {
-      const response = await axios.post('http://localhost:5001/api/jobseeker/login', { email, password });
+      const response = await axios.post('https://nadavapalli-lakshman-online-job-portal.onrender.com/api/jobseeker/login', { email, password });
 
       // Save token to localStorage
       localStorage.setItem('token', response.data.token);
