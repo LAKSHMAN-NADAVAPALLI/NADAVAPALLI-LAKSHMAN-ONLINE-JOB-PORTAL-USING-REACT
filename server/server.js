@@ -20,7 +20,10 @@ const app = express();
 app.use(express.json());
 const allowedOrigins = [
   process.env.FRONTEND_URL || 'http://localhost:3000',
-  'https://nadavapalli-lakshman-online-job-portal-using-react-6hdd.vercel.app'  // Add your Vercel frontend URL here
+  'https://nadavapalli-lakshman-online-job-portal-using-react-6hdd.vercel.app', 
+  //  // Add your Vercel frontend URL here
+  'https://nadavapalli-lakshman-online-job-portal-using-react-lapy.vercel.app'
+
 ];
 
 app.use(cors({
