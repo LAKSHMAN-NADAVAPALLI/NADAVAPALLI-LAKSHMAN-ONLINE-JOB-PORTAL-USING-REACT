@@ -128,28 +128,27 @@ const getJobseekerProfile = async (req, res) => {
     }
 
     res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');
-    res.status(200).json(jobseeker); // Return the Jobseeker profile
+    res.status(200).json(jobseeker); // Return the employer profile
   } catch (err) {
     console.error('Error fetching Jobseeker profile:', err);
     res.status(500).json({ error: 'Server error' });
   }
 };
 
-// Update Jobseeker profile
 const updateJobseekerProfile = async (req, res) => {
   try {
-    const email = req.user?.email;
+    const email = req.user?.email; 
 
     if (!email) {
       return res.status(400).json({ error: 'Invalid request: Email not found in token' });
     }
 
-    const { name, address, phoneNumber, dob } = req.body;
-    let profilePicture = null;
+    const { name, address, phoneNumber, dob } = req.body; 
+    let profilePicture = null; 
 
     // Check if a file was uploaded
     if (req.file) {
-      profilePicture = req.file.path; // Use the correct file path property
+      profilePicture = req.file.path; // Use the correct file path property 
     }
 
     // Validation
@@ -163,7 +162,7 @@ const updateJobseekerProfile = async (req, res) => {
       updateData.profilePicture = profilePicture;
     }
 
-    // Find and update the Jobseeker
+    // Find and update the employer
     const jobseeker = await Jobseeker.findOneAndUpdate(
       { email },
       updateData,
@@ -176,12 +175,12 @@ const updateJobseekerProfile = async (req, res) => {
 
     res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');
     res.status(200).json({ message: 'Profile updated successfully.', jobseeker });
+
   } catch (err) {
     console.error('Error updating Jobseeker profile:', err);
     res.status(500).json({ error: 'Server error.' });
   }
 };
-
 
 
 

@@ -7,7 +7,7 @@ const EmployerDashboard = () => {
   const [employerData, setEmployerData] = useState({
     name: "",
     email: "",
-    profilePicture: "default-placeholder.webp", // Default image
+    profilePicture: "",
     dob: "",
     address: "",
     phoneNumber: "",
@@ -15,7 +15,7 @@ const EmployerDashboard = () => {
   const [editing, setEditing] = useState(false);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [profilePicture] = useState(null);
+  const [profilePicture, setProfilePicture] = useState(null);
   const [jobs, setJobs] = useState([]); // State to hold jobs data
 
   useEffect(() => {
@@ -80,7 +80,7 @@ const EmployerDashboard = () => {
     try {
       const formData = new FormData();
       formData.append("name", employerData.name);
-      if (profilePicture) formData.append("profilePicture", profilePicture); // Only include file if uploaded
+      if (profilePicture) formData.append("profilePicture", profilePicture);
       if (editing) {
         formData.append("dob", employerData.dob);
         formData.append("address", employerData.address);
@@ -113,7 +113,7 @@ const EmployerDashboard = () => {
   };
 
   const handleFileChange = (e) => {
-    <p>No photo selected. Default image is used.</p>
+    setProfilePicture(e.target.files[0]);
   };
 
   if (loading) return <div>Loading...</div>;
@@ -124,7 +124,7 @@ const EmployerDashboard = () => {
       <div className="employerprofile-picture-container">
         <img
           src={
-            employerData.profilePicture && employerData.profilePicture !== 'default-placeholder.webp'
+            employerData.profilePicture
               ? `http://localhost:5001/${employerData.profilePicture}`
               : `http://localhost:5001/uploads/default-placeholder.webp`
           }
@@ -132,9 +132,6 @@ const EmployerDashboard = () => {
           className="employerprofile-picture"
           onError={() => console.error("Error loading profile picture")}
         />
-        {employerData.profilePicture === 'default-placeholder.webp' && (
-          <p>No photo selected. Default image is used.</p>
-        )}
       </div>
       <h2>Employer Dashboard</h2>
       {!editing ? (
@@ -208,6 +205,7 @@ const EmployerDashboard = () => {
       )}
   
       <div>
+        
         <h3> Jobs Monitoring</h3>
         {jobs.length > 0 ? (
           <ul className="employerjobs-list">
