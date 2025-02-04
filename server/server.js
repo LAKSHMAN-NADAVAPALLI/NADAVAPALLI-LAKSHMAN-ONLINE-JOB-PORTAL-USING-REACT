@@ -46,6 +46,15 @@ app.post('/api/admin/login-password', adminController.loginWithPassword);
 app.use('/uploads', express.static('uploads'));
 
 // Error Handling Middleware
+
+app.use((err, req, res, next) => {
+  console.error('🔥 Unhandled Error:', err.stack || err.message || err);
+  res.status(err.status || 500).json({
+    success: false,
+    message: err.message || 'Internal Server Error',
+  });
+});
+
 app.use(errorHandler);
 
 // Remove frontend serving logic because frontend is deployed separately
@@ -53,9 +62,10 @@ app.use(errorHandler);
 const startServer = async () => {
   try {
     await connectDB();
-    app.listen(process.env.PORT || 5001, () => {
-      console.log(`🚀 Server running on port ${process.env.PORT || 5001}`);
-    });
+    const PORT = process.env.PORT || 10000; // Default to 10000 if PORT is not defined
+app.listen(PORT, () => {
+  console.log(`🚀 Server running on port ${PORT}`);
+});
   } catch (error) {
     console.error('Error starting server:', error.message);
   }
