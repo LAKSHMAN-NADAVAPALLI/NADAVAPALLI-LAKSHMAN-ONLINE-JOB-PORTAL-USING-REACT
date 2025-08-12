@@ -1,212 +1,178 @@
+/* Container */
 .admin-job-management {
-  font-family: Arial, sans-serif;
-  background-color:#eee3e3;
-  color: #ff0000;
-  padding: 18px;
-  font-size: 20;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background-color: #d4d6d8; /* Softer than white */
+  color: #2c3e50;
+  padding: 20px;
+  max-width: 1500px;
+  margin: auto;
 }
 
+/* Headings */
 .admin-job-management h2 {
-  font-size: 44px;
-  color: #000000;
+  font-size: 2.2rem;
+  color: #1a1a1a;
   margin-bottom: 20px;
   text-align: center;
+  font-weight: 700;
 }
 
 .admin-job-management h3 {
-  font-size: 40px;
-  color: #e61c1c;
+  font-size: 1.5rem;
+  color: #34495e;
   margin-bottom: 15px;
+  font-weight: 600;
 }
 
 /* Form Styles */
-.admin-job-management .form-container {
-  background-color: #8fa187;
-  border-radius: 8px;
-  box-shadow: 0 2px 5px rgba(31, 32, 32, 0.1);
+.form-container {
+  background: linear-gradient(145deg, #ffffff, #f9fbfd);
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
   padding: 20px;
+  margin-bottom: 30px;
 }
 
 .admin-job-management input,
 .admin-job-management textarea {
   width: 100%;
-  padding: 10px;
+  padding: 12px;
   margin-bottom: 15px;
-  border: 1px solid #122eca;
-  border-radius: 5px;
+  border: 1px solid #d0d7de;
+  border-radius: 8px;
   font-size: 14px;
+  transition: all 0.3s ease;
+  background-color: #ffffff;
 }
 
-.admin-job-management input[type="number"] {
-  -moz-appearance: textfield;
+.admin-job-management input:focus,
+.admin-job-management textarea:focus {
+  border-color: #4a90e2;
+  box-shadow: 0 0 6px rgba(74, 144, 226, 0.3);
+  outline: none;
 }
 
 .admin-job-management textarea {
   resize: vertical;
+  min-height: 90px;
 }
 
+/* Buttons */
 .admin-job-management button {
-  padding: 10px 20px;
-  background-color: #5cb85c;
-  color: white;
+  padding: 10px 18px;
   border: none;
-  border-radius: 5px;
-  cursor: pointer;
+  border-radius: 8px;
   font-size: 14px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.2s ease;
 }
 
 .admin-job-management button:disabled {
-  background-color: #ccc;
+  background-color: #b0b8c1;
   cursor: not-allowed;
 }
 
-.admin-job-management button:hover {
-  background-color: #4cae4c;
+.admin-job-management button:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12);
 }
 
-.admin-job-management button:focus {
-  outline: none;
+/* Primary Button */
+.admin-job-management button:not(.delete):not(.view-applicants) {
+  background-color: #4a90e2;
+  color: white;
 }
 
-/* Job List Styles */
+.admin-job-management button:not(.delete):not(.view-applicants):hover {
+  background-color: #3a78c2;
+}
+
+/* Delete Button */
+.admin-job-management button.delete {
+  background-color: #e74c3c;
+  color: white;
+}
+
+.admin-job-management button.delete:hover {
+  background-color: #c0392b;
+}
+
+/* View Applicants Button */
+.admin-job-management button.view-applicants {
+  background-color: #2ecc71;
+  color: white;
+}
+
+.admin-job-management button.view-applicants:hover {
+  background-color: #27ae60;
+}
+
+/* Job List */
 .admin-job-management ul {
   padding-left: 0;
   list-style: none;
 }
 
 .admin-job-management li {
-  background-color: #8fa187;
-  border-radius: 8px;
-  padding: 20px;
+  background: linear-gradient(145deg, #ffffff, #f8f9fa);
+  border-radius: 12px;
+  padding: 15px;
   margin-bottom: 15px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.05);
 }
 
 .admin-job-management li strong {
-  font-size: 18px;
-  color: #d61d1d;
+  font-size: 1.1rem;
+  color: #4a90e2;
 }
 
 .admin-job-management li p {
-  font-size: 20px;
-  color: #7d095c;
+  font-size: 0.95rem;
+  color: #555;
   margin-top: 5px;
 }
 
-.admin-job-management button {
-  margin-right: 10px;
-}
-
-.admin-job-management button:hover {
-  background-color: #d9534f;
-}
-
-.admin-job-management button:focus {
-  outline: none;
-}
-
-/* Edit/Delete Button Styling */
-.admin-job-management button {
-  padding: 8px 15px;
-  background-color: #0275d8;
-  color: white;
-  border-radius: 5px;
-}
-
-.admin-job-management button.delete {
-  background-color: #d9534f;
-}
-
-.admin-job-management button.delete:hover {
-  background-color: #c9302c;
-}
-
-/* View Applicants Button Styling */
-.admin-job-management button.view-applicants {
-  background-color: #5bc0de;
-}
-
-.admin-job-management button.view-applicants:hover {
-  background-color: #31b0d5;
-}
-
-/* Applicants List Styling */
-/* Applicants List Styling */
+/* Applicants List */
 .applicants-list {
-  background-color: #d01818;
+  background: linear-gradient(145deg, #ffffff, #f9fbfd);
   padding: 15px;
   margin-top: 20px;
-  border-radius: 8px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.05);
 }
 
 .applicants-list h3 {
-  color: #333;
-  font-size: 20px;
+  color: #34495e;
+  font-size: 1.2rem;
   margin-bottom: 15px;
 }
 
-.applicants-list ul {
-  padding-left: 0;
-  list-style: none;
-}
-
 .applicants-list li {
-  background-color: #fff;
+  background-color: #eef3f8;
   border-radius: 8px;
-  padding: 15px;
+  padding: 10px;
   margin-bottom: 10px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .applicants-list li p {
-  font-size: 14px;
-  color: #555;
-  margin: 5px 0;
+  font-size: 0.9rem;
+  margin: 4px 0;
+  color: #2c3e50;
 }
 
-/* Styling individual applicant details */
-.applicants-list li .applicant-name {
-  font-size: 16px;
-  font-weight: bold;
-  color: #333;
-}
+/* Responsive Design */
+@media (max-width: 768px) {
+  .admin-job-management {
+    padding: 15px;
+  }
 
-.applicants-list li .applicant-email {
-  font-size: 14px;
-  color: #5bc0de;
-}
+  .form-container {
+    padding: 15px;
+  }
 
-.applicants-list li .applicant-details {
-  font-size: 13px;
-  color: #777;
-  margin-top: 10px;
-}
-
-.applicants-list li .applicant-details span {
-  display: block;
-  margin-bottom: 5px;
-}
-
-.applicants-list li .applicant-actions {
-  margin-top: 10px;
-}
-
-.applicants-list li .applicant-actions button {
-  padding: 5px 10px;
-  background-color: #0275d8;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 12px;
-  margin-right: 5px;
-}
-
-.applicants-list li .applicant-actions button:hover {
-  background-color: #025aa5;
-}
-
-.applicants-list li .applicant-actions button:focus {
-  outline: none;
+  .admin-job-management button {
+    margin-bottom: 8px;
+    width: 100%;
+  }
 }

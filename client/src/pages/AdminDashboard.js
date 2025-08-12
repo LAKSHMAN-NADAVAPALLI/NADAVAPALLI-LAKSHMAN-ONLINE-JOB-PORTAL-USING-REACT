@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './AdminDashboard.css';
-import { useNavigate } from 'react-router-dom';  // Import useNavigate from React Router
+import admin from '../assets/admin.jpg';
+import { useNavigate } from 'react-router-dom';
 
 const AdminDashboard = () => {
   const [employers, setEmployers] = useState([]);
@@ -13,14 +14,10 @@ const AdminDashboard = () => {
   const [selectedUser, setSelectedUser] = useState(null);
   const [newPassword, setNewPassword] = useState('');
 
-  const navigate = useNavigate();  // Initialize useNavigate hook
+  const navigate = useNavigate();
 
   useEffect(() => {
-    document.documentElement.className = 'admin-dashboard-page';
     fetchUsers();
-    return () => {
-      document.documentElement.className = '';
-    };
   }, []);
 
   // Fetch Employers and Job Seekers
@@ -126,159 +123,175 @@ const AdminDashboard = () => {
   );
 
   return (
-    <div style={{ padding: '20px' }}>
-      <h2>Admin Dashboard</h2>
-
-      <div style={{ display: 'flex', gap: '10px', marginBottom: '20px' }}>
-        <select
-          value={selectedRole}
-          onChange={(e) => setSelectedRole(e.target.value)}
-          style={{ padding: '5px' }}
-        >
-          <option value="All">All Users</option>
-          <option value="Employer">Employers</option>
-          <option value="Job Seeker">Job Seekers</option>
-        </select>
-
-        {/* Job Management Button */}
-        <button
-          onClick={() => navigate('/adminjobs')}  // Redirect to /adminjobs page
-          style={{
-            padding: '5px 10px',
-            backgroundColor: '#007BFF',
-            color: 'white',
-            border: 'none',
-            borderRadius: '4px',
-            cursor: 'pointer',
-          }}
-        >
-          Job Management
-        </button>
+    <div className="admin-dashboard-page">
+      <div className="sidebar">
+        <div className="sidebar-logo">
+          <img src={admin} alt="Admin Logo" />
+          <span>Admin Dashboard</span>
+        </div>
+        <div className="sidebar-nav">
+          <a href="#dashboard">Dashboard</a>
+          <a href="#users" onClick={() => navigate('/viewanalytics')}>View Analytics</a>
+          <a href="#jobs" onClick={() => navigate('/adminjobs')}>Job Management</a>
+          <a href="#settings">Settings</a>
+        </div>
       </div>
+      <div className="main-content">
+        <h2>Admin Dashboard</h2>
 
-      <input
-        type="text"
-        placeholder="Search Users by Name"
-        value={searchQuery}
-        onChange={(e) => setSearchQuery(e.target.value)}
-        style={{ marginBottom: '20px', padding: '5px', width: '100%' }}
-      />
+        <div style={{ display: 'flex', gap: '10px', marginBottom: '20px' }}>
+          <select
+            value={selectedRole}
+            onChange={(e) => setSelectedRole(e.target.value)}
+            style={{ padding: '5px' }}
+          >
+            <option value="All">All Users</option>
+            <option value="Employer">Employers</option>
+            <option value="Job Seeker">Job Seekers</option>
+          </select>
 
-      {loading ? (
-        <p>Loading...</p>
-      ) : (
-        <div>
-          <div>
-            <h3>Employers</h3>
-            {filteredEmployers.length > 0 ? (
-              <table className="user-table">
-                <thead>
-                  <tr>
-                    <th>Email</th>
-                    <th>Name</th>
-                    <th>Status</th>
-                    <th>Actions</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {filteredEmployers.map((emp) => (
-                    <tr key={emp._id}>
-                      <td>{emp.email}</td>
-                      <td>{emp.name}</td>
-                      <td>{emp.isBlocked ? 'Blocked' : 'Active'}</td>
-                      <td>
-                        <div className="action-buttons">
-                          <button
-                            onClick={() =>
-                              handleBlockUser(emp.email, 'Employer', emp.isBlocked)
-                            }
-                            disabled={loading}
-                            className="action-btn"
-                          >
-                            {emp.isBlocked ? 'Unblock' : 'Block'}
-                          </button>
-                          <button
-                            onClick={() => openPasswordModal(emp, 'Employer')}
-                            className="action-btn"
-                          >
-                            Change Password
-                          </button>
-                        </div>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            ) : (
-              <p>No employers found.</p>
-            )}
-          </div>
-
-          <div>
-            <h3>Job Seekers</h3>
-            {filteredJobSeekers.length > 0 ? (
-              <table className="user-table">
-                <thead>
-                  <tr>
-                    <th>Email</th>
-                    <th>Name</th>
-                    <th>Status</th>
-                    <th>Actions</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {filteredJobSeekers.map((seeker) => (
-                    <tr key={seeker._id}>
-                      <td>{seeker.email}</td>
-                      <td>{seeker.name}</td>
-                      <td>{seeker.isBlocked ? 'Blocked' : 'Active'}</td>
-                      <td>
-                        <div className="action-buttons">
-                          <button
-                            onClick={() =>
-                              handleBlockUser(seeker.email, 'Job Seeker', seeker.isBlocked)
-                            }
-                            disabled={loading}
-                            className="action-btn"
-                          >
-                            {seeker.isBlocked ? 'Unblock' : 'Block'}
-                          </button>
-                          <button
-                            onClick={() => openPasswordModal(seeker, 'Job Seeker')}
-                            className="action-btn"
-                          >
-                            Change Password
-                          </button>
-                        </div>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            ) : (
-              <p>No job seekers found.</p>
-            )}
-          </div>
-        </div>
-      )}
-
-      {showPasswordModal && (
-        <div style={{ marginTop: '20px' }}>
-          <h4>Change Password for {selectedUser.role}</h4>
-          <p>Email: {selectedUser.email}</p>
-          <input
-            type="password"
-            placeholder="Enter New Password"
-            value={newPassword}
-            onChange={(e) => setNewPassword(e.target.value)}
-            style={{ padding: '5px', marginBottom: '10px' }}
-          />
-          <button onClick={handleChangePassword} disabled={loading}>
-            Save Password
+          <button
+            onClick={() => navigate('/adminjobs')}
+            style={{
+              padding: '5px 10px',
+              backgroundColor: '#007BFF',
+              color: 'white',
+              border: 'none',
+              borderRadius: '4px',
+              cursor: 'pointer',
+            }}
+          >
+            Job Management
           </button>
-          <button onClick={() => setShowPasswordModal(false)}>Cancel</button>
         </div>
-      )}
+
+        <input
+          type="text"
+          placeholder="Search Users by Name"
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+          style={{ marginBottom: '20px', padding: '5px', width: '100%' }}
+        />
+
+        {loading ? (
+          <p>Loading...</p>
+        ) : (
+          <div>
+            <div>
+              <h3>Employers</h3>
+              {filteredEmployers.length > 0 ? (
+                <table className="user-table">
+                  <thead>
+                    <tr>
+                      <th>Email</th>
+                      <th>Name</th>
+                      <th>Status</th>
+                      <th style={{ textAlign: 'center' }}>ACTIONS</th>
+
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {filteredEmployers.map((emp) => (
+                      <tr key={emp._id}>
+                        <td>{emp.email}</td>
+                        <td>{emp.name}</td>
+                        <td>{emp.isBlocked ? 'Blocked' : 'Active'}</td>
+                        <td>
+                          <div className="action-buttons">
+                            <button
+                              onClick={() =>
+                                handleBlockUser(emp.email, 'Employer', emp.isBlocked)
+                              }
+                              disabled={loading}
+                              className="action-btn"
+                            >
+                              {emp.isBlocked ? 'Unblock' : 'Block'}
+                            </button>
+                            <button
+                              onClick={() => openPasswordModal(emp, 'Employer')}
+                              className="action-btn"
+                            >
+                              Change Password
+                            </button>
+                          </div>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              ) : (
+                <p>No employers found.</p>
+              )}
+            </div>
+
+            <div>
+              <h3>Job Seekers</h3>
+              {filteredJobSeekers.length > 0 ? (
+                <table className="user-table">
+                  <thead>
+                    <tr>
+                      <th>Email</th>
+                      <th>Name</th>
+                      <th>Status</th>
+                      <th>Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {filteredJobSeekers.map((seeker) => (
+                      <tr key={seeker._id}>
+                        <td>{seeker.email}</td>
+                        <td>{seeker.name}</td>
+                        <td>{seeker.isBlocked ? 'Blocked' : 'Active'}</td>
+                        <td>
+                          <div className="action-buttons">
+                            <button
+                              onClick={() =>
+                                handleBlockUser(seeker.email, 'Job Seeker', seeker.isBlocked)
+                              }
+                              disabled={loading}
+                              className="action-btn"
+                            >
+                              {seeker.isBlocked ? 'Unblock' : 'Block'}
+                            </button>
+                            <button
+                              onClick={() => openPasswordModal(seeker, 'Job Seeker')}
+                              className="action-btn"
+                            >
+                              Change Password
+                            </button>
+                          </div>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              ) : (
+                <p>No job seekers found.</p>
+              )}
+            </div>
+          </div>
+        )}
+
+        {showPasswordModal && (
+          <div className="modal">
+            <div className="modal-content">
+              <h4>Change Password for {selectedUser.role}</h4>
+              <p>Email: {selectedUser.email}</p>
+              <input
+                type="password"
+                placeholder="Enter New Password"
+                value={newPassword}
+                onChange={(e) => setNewPassword(e.target.value)}
+                style={{ padding: '5px', marginBottom: '10px' }}
+              />
+              <button onClick={handleChangePassword} disabled={loading}>
+                Save Password
+              </button>
+              <button onClick={() => setShowPasswordModal(false)}>Cancel</button>
+            </div>
+          </div>
+        )}
+      </div>
     </div>
   );
 };

@@ -49,24 +49,28 @@ const EmployerRegister = () => {
     <div className="employerregister-container">
       <form className="employerregister-form" onSubmit={handleRegister}>
         <h2>Employer Registration</h2>
+        <label className="eminput">Name</label>
         <input 
           type="text" 
           placeholder="Name" 
           value={name} 
           onChange={(e) => setName(e.target.value)} 
         />
+        <label className="eminput">Email</label>
         <input 
           type="email" 
           placeholder="Email" 
           value={email} 
           onChange={(e) => setEmail(e.target.value)} 
         />
+        <label className="eminput">Password</label>
         <input 
           type="password" 
           placeholder="Password" 
           value={password} 
           onChange={(e) => setPassword(e.target.value)} 
         />
+        <label className="eminput">Confirm Password</label>
         <input 
           type="password" 
           placeholder="Confirm Password" 

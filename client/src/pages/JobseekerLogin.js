@@ -31,32 +31,34 @@ const JobseekerLogin = () => {
       <div className="login-card">
         <h2 className="login-title">Job Seeker Login</h2>
         <form onSubmit={handleLogin} className="login-form">
-  <div className="input-container">
-    <input 
-      type="email" 
-      className="login-input"
-      placeholder=" " 
-      value={email} 
-      onChange={(e) => setEmail(e.target.value)} 
-    />
-    <label className="input-label">Enter Email</label>
-  </div>
+         <div className="input-container">
+  <input 
+    id="email"
+    type="email" 
+    className="login-input"
+    placeholder=" "
+    value={email} 
+    onChange={(e) => setEmail(e.target.value)} 
+  />
+  <label htmlFor="email" className="input-label">Email</label>
+</div>
 
-  <div className="input-container">
-    <input 
-      type="password" 
-      className="login-input"
-      placeholder=" " 
-      value={password} 
-      onChange={(e) => setPassword(e.target.value)} 
-    />
-    <label className="input-label">Enter Password</label>
-  </div>
+<div className="input-container">
+  <input 
+    id="password"
+    type="password" 
+    className="login-input"
+    placeholder=" "
+    value={password} 
+    onChange={(e) => setPassword(e.target.value)} 
+  />
+  <label htmlFor="password" className="input-label">Password</label>
+</div>
 
-  {error && <p className="error-message">{error}</p>}
-  
-  <button type="submit" className="login-button">Login</button>
-</form>
+          {error && <p className="error-message">{error}</p>}
+          
+          <button type="submit" className="login-button">Login</button>
+        </form>
         <div className="register-link">
           <p>Don't have an account? <span onClick={() => navigate('/jobseeker/register')}>Register here</span></p>
         </div>

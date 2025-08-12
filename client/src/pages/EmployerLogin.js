@@ -12,7 +12,7 @@ const EmployerLogin = () => {
   useEffect(() => {
     document.body.className = 'employer-login-page'; // Optional: Add a class to style the body for this page
     return () => {
-      document.body.className = ''; // Reset the body class when leaving the page
+      document.body.className = 'Job Portal'; // Reset the body class when leaving the page
     };
   }, []);
 
@@ -49,24 +49,24 @@ const EmployerLogin = () => {
         </header>
         <div className="employer-login-form-container">
           <form onSubmit={handleLogin} className="employer-login-form">
-            <label htmlFor="email" className="input-label">Email</label>
+            <label htmlFor="email" className="Einput-label">Email</label>
             <input
               id="email"
               type="email"
               placeholder="Enter your email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="input-field"
+              className="Einput-field"
               required
             />
-            <label htmlFor="password" className="input-label">Password</label>
+            <label htmlFor="password" className="Einput-label">Password</label>
             <input
               id="password"
               type="password"
               placeholder="Enter your password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="input-field"
+              className="Einput-field"
               required
             />
             {error && <p className="error-message">{error}</p>}

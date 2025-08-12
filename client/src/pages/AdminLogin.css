@@ -1,7 +1,5 @@
 /* Apply page-specific styles only when .admin-login-page is present */
-.admin-login-page {
-  background-color: #f4f4f4; /* Light background color for the page */
-}
+
 
 .adminlogin-containerad {
   display: flex;
@@ -9,78 +7,149 @@
   align-items: center;
   justify-content: center;
   padding: 2rem;
+  animation: fadeIn 1s ease-in-out; /* Fade-in animation for the container */
+ 
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .header h1 {
   font-size: 50px;
   margin-bottom: 1rem;
-  color:  #1274dd;
+  color: #1274dd;
   font-weight: bolder;
-  
+  animation: slideInFromTop 1s ease-in-out; /* Slide-in animation for the header */
+}
 
+@keyframes slideInFromTop {
+  from {
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .form-containerad {
   background: #ffffff;
-  padding: 2rem;  /* Reduced padding to balance out space */
+  padding: 2rem;
   border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(185, 10, 10, 0.1);
-  width: 20%;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px; /* Responsive width */
   margin-top: 10dvh;
- 
-  
-  
-  text-align: flex;
+  text-align: center;
   margin-bottom: 0px;
   font-style: 20px;
+  min-height: 60vh;
+  animation: scaleIn 0.8s ease-in-out; /* Scale-in animation for the form container */
 }
 
-.input-label {
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.Ainput-group {
+  margin-bottom: 1.5rem;
+  text-align: left;
+}
+
+.Ainput-label {
   display: block;
   font-weight: bold;
   margin-bottom: 0.5rem;
-  font-size: 1.2rem; /* Adjusted font size */
-  text-align: left;
+  font-size: 1.2rem;
   color: #000000;
-  font-weight: bolder;
 }
 
-
-.input-field {
+.Ainput-field {
   width: 100%;
   padding: 0.75rem;
-  margin-bottom: 1rem;
   border: 1px solid #ccc;
   border-radius: 4px;
+  transition: all 0.3s ease-in-out; /* Smooth transition for input fields */
+}
+
+.Ainput-field:focus {
+  border-color: #1274dd;
+  box-shadow: 0 0 8px rgba(18, 116, 221, 0.5); /* Glow effect on focus */
+  transform: scale(1.02); /* Slight scale-up on focus */
 }
 
 .error-messagead {
   color: #d9534f;
   margin-bottom: 1rem;
-  font-size: 25px;
+  font-size: 1rem;
   font-weight: bolder;
+  animation: shake 0.5s ease-in-out; /* Shake animation for error messages */
+}
+
+@keyframes shake {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-10px);
+  }
+  50% {
+    transform: translateX(10px);
+  }
+  75% {
+    transform: translateX(-10px);
+  }
 }
 
 .submit-button {
-  background-color: #ffffff;
-  color: #084a90;
+  background-color: #1274dd;
+  color: #ffffff;
   padding: 0.75rem 1.5rem;
   border: none;
   border-radius: 4px;
   cursor: pointer;
   width: 100%;
   font-weight: bolder;
-  font-size: 25px !important;
-  text-align: flex;
+  font-size: 1.2rem;
+  transition: all 0.3s ease-in-out; /* Smooth transition for the button */
+  position: relative;
 }
 
 .submit-button:hover {
-  background-color: #a8e12e;
+  background-color: #0e5bb5;
+  transform: translateY(-3px); /* Slight lift on hover */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Shadow effect on hover */
+}
+
+.submit-button:active {
+  transform: translateY(0); /* Reset lift on active */
+}
+
+.spinner-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .spinner {
-  width: 1rem;
-  height: 1rem;
+  width: 1.5rem;
+  height: 1.5rem;
   border: 2px solid transparent;
   border-top: 2px solid #fff;
   border-radius: 50%;
@@ -100,14 +169,37 @@
   text-align: center;
   margin-top: 2rem;
   color: #777;
-  font-size: 30px;
+  font-size: 1rem;
+  animation: fadeInUp 1s ease-in-out; /* Fade-in and slide-up animation for the footer */
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .form-containerad h2 {
-  font-size: 2rem; /* Adjust font size */
-  font-weight: 600; /* Makes the font semi-bold */
-  font-family: 'Roboto', Arial, sans-serif; /* Font style */
-  color: #084a90; /* Blue color */
-  margin-bottom: 1.5rem; /* Space below the heading */
-  text-align: start; /* Left-align the text */
+  font-size: 2rem;
+  font-weight: 600;
+  color: #084a90;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  animation: fadeInLeft 1s ease-in-out; /* Fade-in and slide-left animation for the heading */
+}
+
+@keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }

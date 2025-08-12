@@ -20,13 +20,18 @@ body {
 
 /* Custom page-specific background styles */
 body.home-page {
-  background-color: #f99797;
+  background-color: #3c00ff;
   min-height: 150vh;
    
 }
 
 body.admin-login-page {
-  background-color:  #e8e6fa; /* Dark grey background for Admin Login */
+  background-color: #c5c0c0; /* Light background color for the page */
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Roboto', Arial, sans-serif;
 }
 
 body.employer-login-page {

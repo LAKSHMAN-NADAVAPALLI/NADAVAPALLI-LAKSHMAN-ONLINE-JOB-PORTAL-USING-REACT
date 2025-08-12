@@ -40,14 +40,13 @@
   flex-direction: column;
   gap: 1rem;
 }
-
-.input-label {
-  font-size: 0.9rem;
-  color: #666666;
+.Einput-label {
+  font-size: 1.1rem;
+  color: #000000;
   text-align: left;
 }
 
-.input-field {
+.Einput-field {
   width: 100%;
   padding: 0.8rem;
   font-size: 0.9rem;
@@ -55,7 +54,7 @@
   border-radius: 4px;
 }
 
-.input-field:focus {
+.Einput-field:focus {
   outline: none;
   border-color: #007bff;
   box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.2);

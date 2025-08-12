@@ -24,7 +24,10 @@ const AdminLogin = () => {
     setLoading(true);
 
     try {
-      const response = await axios.post('https://nadavapalli-lakshman-online-job-portal.onrender.com/api/admin/login-password', { emailOrPhone, password });
+      const response = await axios.post(
+        'https://nadavapalli-lakshman-online-job-portal.onrender.com/api/admin/login-password',
+        { emailOrPhone, password }
+      );
       alert(response.data.message || 'Login successful');
       navigate('/admin-dashboard');
     } catch (err) {
@@ -44,33 +47,46 @@ const AdminLogin = () => {
         <h2>Welcome to Admin Login</h2>
 
         <form className="login-formad" onSubmit={handlePasswordLogin}>
-          <label htmlFor="emailOrPhone" className="input-label">
-            
-          </label>
-          <input
-            id="emailOrPhone"
-            className="input-field"
-            type="text"
-            placeholder="Enter Email or Phone"
-            value={emailOrPhone}
-            onChange={(e) => setEmailOrPhone(e.target.value)}
-            required
-          />
-          <label htmlFor="password" className="input-label">
-            
-          </label>
-          <input
-            id="password"
-            className="input-field"
-            type="password"
-            placeholder="Enter Password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
+          <div className="Ainput-group">
+            <label htmlFor="" className="Ainput-label">
+              Email or Phone
+            </label>
+            <input
+              id=""
+              className="Ainput-field"
+              type="text"
+              placeholder="Enter Email"
+              value={emailOrPhone}
+              onChange={(e) => setEmailOrPhone(e.target.value)}
+              required
+            />
+          </div>
+
+          <div className="Ainput-group">
+            <label htmlFor="" className="Ainput-label">
+              Password
+            </label>
+            <input
+              id="password"
+              className="Ainput-field"
+              type="password"
+              placeholder="Enter Password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+          </div>
+
           {error && <p className="error-messagead">{error}</p>}
+
           <button type="submit" className="submit-button" disabled={loading}>
-            {loading ? <span className="spinner" /> : 'Login'}
+            {loading ? (
+              <div className="spinner-container">
+                <span className="spinner" />
+              </div>
+            ) : (
+              'Login'
+            )}
           </button>
         </form>
       </div>

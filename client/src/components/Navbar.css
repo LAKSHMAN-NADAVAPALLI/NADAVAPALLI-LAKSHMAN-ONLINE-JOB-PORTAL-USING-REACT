@@ -1,56 +1,66 @@
 /* Navbar styles */
+
+/* Navbar styles */
 .navbar {
-  background-color:#a9dcba; /* Background color for navbar */
-  color: rgb(0, 0, 0); /* Text color */
-  display: flex; /* Use flexbox for layout */
-  justify-content: space-between; /* Aligns items to opposite ends */
-  align-items: center; /* Centers items vertically */
-  padding: 1rem 2rem; /* Added padding for spacing */
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
-  margin-bottom: 1rem; /* Adds space below the navbar */
+  background-color: #ff0000;
+  color: rgb(0, 0, 0);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  margin-bottom: 1rem;
 }
 
 /* Navbar title */
 .navbar-title {
-  font-size: 1.8rem; /* Increased font size for better visibility */
-  font-weight: bold; /* Bold font for emphasis */
+  font-size: 1.8rem;
+  font-weight: bold;
 }
 
-/* Navbar links */
+/* Navbar links container */
 .navbar-links {
-  list-style: none; /* Remove default list styling */
-  display: flex; /* Use flexbox for link layout */
-  gap: 2rem; /* Space between the links */
+  list-style: none;
+  display: flex;
+  gap: 2rem;
+  font-weight: bold;
+  font-size: 1.2rem;
+  padding: 0;
+  margin: 0;
 }
 
-/* Individual link styles */
-.navbar-links li {
-  position: relative; /* Positioning for hover effect */
-}
-
+/* Individual link styles with border box */
 .navbar-links li a {
-  color: rgb(82, 9, 184); /* Link color */
-  text-decoration: none; /* No underline by default */
-  font-size: 1rem; /* Font size for links */
-  transition: color 0.3s ease; /* Smooth color transition */
+  color: rgb(0, 0, 0);
+  text-decoration: none;
+  font-size: 1.3rem;
+  padding: 8px 16px; /* Padding inside box */
+  border: 2px solid #000; /* Black border */
+  border-radius: 6px; /* Rounded corners */
+  background-color: transparent; /* Transparent background */
+  transition: all 0.3s ease; /* Smooth hover effect */
 }
 
-/* Link hover effect */
+/* Hover effect for links */
 .navbar-links li a:hover {
-  text-decoration: underline; /* Underline on hover */
-  color: #ffe600; /* Change color on hover for emphasis */
+  background-color: #ffe600; /* Yellow background on hover */
+  color: black;
+  border-color: #ffe600; /* Border matches hover background */
+  text-decoration: none;
 }
 
 /* Responsive styles */
 @media (max-width: 768px) {
   .navbar {
-    flex-direction: column; /* Stack items vertically on smaller screens */
-    align-items: flex-start; /* Align items to the start */
+    flex-direction: column;
+    align-items: flex-start;
   }
 
   .navbar-links {
-    flex-direction: column; /* Stack links vertically */
-    gap: 1rem; /* Reduced gap between links */
-    margin-top: 1rem; /* Space above links */
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 1rem;
   }
 }
+
+/* Navbar links */

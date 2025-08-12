@@ -1,85 +1,167 @@
-/* home.css */
-.home-container {
-  text-align: center;
-  padding: 2rem;
+/* Full page background */
+body.home-page {
+  background-color: #3c00ff;
+  min-height: 220vh;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #fff; /* Default text color white for contrast */
 }
 
+/* Navbar */
+.navbar {
+  background-color: #00ffe5; /* Dark navbar for contrast */
+  color: #000000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0rem 1rem;
+  font-weight:bolder;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+}
+
+.navbar-title {
+  font-size: 1.8rem;
+  font-weight: bold;
+}
+
+.navbar-links {
+  list-style: none;
+  display: flex;
+  gap: 2rem;
+  font-weight: bolder;
+  font-size: medium;
+}
+
+.navbar-links li a {
+   border-color: #68d9f0;
+  background-color: #44a3cc;
+  color: #000000;
+  padding: 8px 16px;
+  border: 2px solid transparent;
+  border-radius: 6px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  margin-right: 2rem;
+}
+
+.navbar-links li a:hover {
+  border-color: #3dbbff;
+  background-color: #57bfff;
+  color: #000;
+}
+
+/* Hero Section */
 .hero-section {
-  background-color: #cff3f4;;
+  background-color: #ffffff;
+  color: #000;
   padding: 4rem 2rem;
-  border-radius: 2px;
-  box-shadow: 0 4px 6px rgba(190, 25, 25, 0.1);
+  border-radius: 10px;
+  margin-top:4rem;
+  margin-bottom: 2rem;
+  margin-left:3rem;
+  margin-right:3rem;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.2);
 }
 
 .hero-section h1 {
   font-size: 2.5rem;
-  margin-bottom: 1rem;
-  color: #ff00bb;
-  font-weight: bolder;
-  
+  font-weight: bold;
+  color: #ff006f;
+  text-align: center;
 }
 
 .hero-section p {
-  font-size: 1.25rem;
-  margin-bottom: 2rem;
-  color: #ffa200;
-  font-weight: bold;
+  font-size: 1.4rem;
+  color: #333;
+  font-weight: bolder;
+  text-align: center;
 }
 
+/* Role Buttons */
 .role-buttons {
   display: flex;
   justify-content: center;
   gap: 1rem;
+  flex-wrap: wrap;
 }
 
 .role-button {
   padding: 0.75rem 1.5rem;
   font-size: 1rem;
   font-weight: bold;
-  border: none;
   border-radius: 5px;
+  border: none;
   cursor: pointer;
   transition: transform 0.2s, background-color 0.2s;
 }
 
-.role-button.admin {
-  background-color: #007bff;
-  color: #fff;
-  font-size: 20px;
-  font-weight: bolder;
-}
-
-.role-button.employer {
-  background-color: #28a745;
-  color: #fff;
-  font-size: 20px;
-  font-weight: bolder;
-}
-
-.role-button.jobseeker {
-  background-color: #eaff00;
-  font-size: 20px;
-  color: #fff;
-  font-weight: bolder;
-}
+.role-button.admin { background-color: #f24c4c; color: white; }
+.role-button.employer { background-color: #830aaf; color: white; }
+.role-button.jobseeker { background-color: #27cd4b; color: white; }
 
 .role-button:hover {
   transform: scale(1.05);
   opacity: 0.9;
 }
+
+/* Features Section */
+.features-section {
+  background-color: #f8f9fa;
+  color: #000;
+  padding: 40px 20px;
+  border-radius: 10px;
+  margin-top: 6rem;
+  margin-left: 3rem;
+  margin-right:3rem;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+}
+
+.features-section h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(250px, 2fr));
+  gap: 20px;
+}
+
+.feature-card {
+  background: #fff;
+  color: #000;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  transition: transform 0.2s ease;
+}
+
+.feature-card:hover {
+  transform: translateY(-5px);
+}
+
+/* Image Section */
 .image-section {
+  text-align: center;
+  margin-top: 5rem;
+}
+
+.image-section h2 {
+  margin-bottom: 1.5rem;
+  color: #ffe600;
+}
+
+.job-images {
   display: flex;
   justify-content: center;
-  gap: 1rem;
-  margin-top: 2rem;
   flex-wrap: wrap;
+  gap: 1rem;
 }
 
 .job-image {
   width: 22%;
-  height: auto;
+  min-width: 200px;
   border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
   transition: transform 0.3s;
 }
 
@@ -87,3 +169,13 @@
   transform: scale(1.05);
 }
 
+/* Footer */
+.footer {
+  background-color: #00fffb;
+  color: #000000;
+  padding: 1rem;
+  text-align: center;
+  margin-top: 3rem;
+  font-weight: bolder;
+  box-shadow: 0 -2px 8px rgba(0,0,0,0.3);
+}

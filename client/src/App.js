@@ -19,6 +19,7 @@ import Contact from './pages/cantact';
 import ChatWindow from './components/ChatWindow';
 
 import './App.css';
+import Viewanalytics from './pages/Viewanalytics';
 
 function App() {
   return (
@@ -36,6 +37,7 @@ function App() {
           <Route path="/employer/login" element={<EmployerLogin />} />
           <Route path="/admin-dashboard" element={<AdminDashboard />} />
           <Route path="/adminjobs" element={<AdminJobManagement />} />
+          <Route path="/viewanalytics" element={<Viewanalytics/>} />
           <Route path="/employer-dashboard" element={<EmployerDashboard />} />
           <Route path="/jobseeker-dashboard" element={<JobseekerDashboard />} />
           <Route path="/about" element={<About />} />

@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './AdminJobManagement.css';
 
+const API_BASE = 'https://nadavapalli-lakshman-online-job-portal.onrender.com/api/admin/jobs';
+
 const AdminJobManagement = () => {
   const [jobs, setJobs] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -14,7 +16,6 @@ const AdminJobManagement = () => {
   const [editingJob, setEditingJob] = useState(null);
   const [applicants, setApplicants] = useState([]);
 
-  // Fetch all jobs on component mount
   useEffect(() => {
     fetchJobs();
   }, []);
@@ -22,82 +23,77 @@ const AdminJobManagement = () => {
   const fetchJobs = async () => {
     setLoading(true);
     try {
-      const response = await axios.get('https://nadavapalli-lakshman-online-job-portal.onrender.com/api/admin/jobs');
-      setJobs(response.data);
+      const { data } = await axios.get(API_BASE);
+      setJobs(data);
     } catch (error) {
-      console.error('Error fetching jobs:', error.message);
-      alert('Failed to fetch jobs. Please try again later.');
+      console.error('Error fetching jobs:', error);
+      alert(error.response?.data?.message || 'Failed to fetch jobs.');
     } finally {
       setLoading(false);
     }
   };
 
-  // Fetch applicants for a specific job
   const fetchApplicants = async (id) => {
+    setApplicants([]);
     try {
-      const response = await axios.get(`https://nadavapalli-lakshman-online-job-portal.onrender.com/api/admin/jobs/${id}/applicants`);
-      setApplicants(response.data.applicants);
+      const { data } = await axios.get(`${API_BASE}/${id}/applicants`);
+      setApplicants(data.applicants || []);
     } catch (error) {
-      console.error('Error fetching applicants:', error.message);
-      alert('Failed to fetch applicants. Please try again later.');
+      console.error('Error fetching applicants:', error);
+      alert(error.response?.data?.message || 'Failed to fetch applicants.');
     }
   };
 
-  // Handle form input changes
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
+    setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  // Add or update a job
   const handleSubmitJob = async () => {
-    if (!formData.title && !formData.description && !formData.location && !formData.salary) {
-      alert('Please fill in at least one field to update.');
+    if (!formData.title || !formData.description || !formData.location || !formData.salary) {
+      alert('All fields are required.');
       return;
     }
 
     setLoading(true);
     try {
-      console.log(editingJob._id);
-
-      if (editingJob) {
-        // PATCH request to update only provided fields
-        const response = await axios.patch(`https://nadavapalli-lakshman-online-job-portal.onrender.com/api/admin/jobs/${editingJob._id}`, formData);
-        setJobs(jobs.map((job) => (job._id === editingJob._id ? response.data : job)));
-        alert('Job updated successfully');
+      if (editingJob && editingJob._id) {
+        // Update job
+        const { data } = await axios.patch(`${API_BASE}/${editingJob._id}`, formData);
+        setJobs((prev) => prev.map((job) => (job._id === editingJob._id ? data : job)));
+        alert('Job updated successfully.');
       } else {
-        // POST request to add a new job
-        const response = await axios.post('https://nadavapalli-lakshman-online-job-portal.onrender.com/api/admin/jobs', formData);
-        setJobs([...jobs, response.data]);
-        alert('Job added successfully');
+        // Add job
+        const { data } = await axios.post(API_BASE, formData);
+        setJobs((prev) => [...prev, data]);
+        alert('Job added successfully.');
       }
-      setFormData({ title: '', description: '', location: '', salary: '' });
-      setEditingJob(null);
+
+      resetForm();
     } catch (error) {
-      console.error('Error saving job:', error.message);
-      alert('Failed to save job. Please try again later.');
+      console.error('Error saving job:', error);
+      alert(error.response?.data?.message || 'Failed to save job.');
     } finally {
       setLoading(false);
     }
   };
 
-  // Delete a job
   const handleDeleteJob = async (id) => {
     if (!window.confirm('Are you sure you want to delete this job?')) return;
+
     setLoading(true);
     try {
-      await axios.delete(`https://nadavapalli-lakshman-online-job-portal.onrender.com/api/admin/jobs/${id}`);
-      setJobs(jobs.filter((job) => job._id !== id));
-      alert('Job deleted successfully');
+      await axios.delete(`${API_BASE}/${id}`);
+      setJobs((prev) => prev.filter((job) => job._id !== id));
+      alert('Job deleted successfully.');
     } catch (error) {
-      console.error('Error deleting job:', error.message);
-      alert('Failed to delete job. Please try again later.');
+      console.error('Error deleting job:', error);
+      alert(error.response?.data?.message || 'Failed to delete job.');
     } finally {
       setLoading(false);
     }
   };
 
-  // Start editing a job
   const startEditing = (job) => {
     setEditingJob(job);
     setFormData({
@@ -108,8 +104,7 @@ const AdminJobManagement = () => {
     });
   };
 
-  // Cancel editing
-  const cancelEditing = () => {
+  const resetForm = () => {
     setEditingJob(null);
     setFormData({ title: '', description: '', location: '', salary: '' });
   };
@@ -152,7 +147,7 @@ const AdminJobManagement = () => {
             {editingJob ? 'Update Job' : 'Add Job'}
           </button>
           {editingJob && (
-            <button onClick={cancelEditing} style={{ marginLeft: '10px' }}>
+            <button onClick={resetForm} style={{ marginLeft: '10px' }}>
               Cancel
             </button>
           )}
