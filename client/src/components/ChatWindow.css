@@ -6,7 +6,7 @@
 }
 
 .chat-icon {
-  background-color: #ff00dd;
+  background-color: #ff09ce;
   color: white;
   width: 50px;
   height: 50px;
@@ -23,7 +23,7 @@
 }
 
 .chat-window {
-  background-color: white;
+  background-color: rgb(240, 236, 236);
   border: 1px solid #ccc;
   border-radius: 10px;
   width: 300px;

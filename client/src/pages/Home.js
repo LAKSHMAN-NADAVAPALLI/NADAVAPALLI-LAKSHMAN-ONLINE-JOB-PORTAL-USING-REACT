@@ -20,13 +20,12 @@ const Home = () => {
   }, []);
 
   const handleRoleChange = (role) => {
-    if (role === 'admin') {
-      navigate('/admin/login');
-    } else if (role === 'employer') {
-      navigate('/employer/login');
-    } else if (role === 'jobseeker') {
-      navigate('/jobseeker/login');
-    }
+    const routes = {
+      admin: '/admin/login',
+      employer: '/employer/login',
+      jobseeker: '/jobseeker/login'
+    };
+    navigate(routes[role]);
   };
 
   const handleImageClick = () => {
@@ -40,40 +39,73 @@ const Home = () => {
         
         {/* Hero Section */}
         <section className="hero-section">
-          <h1>Welcome to the Job Portal</h1>
-          <p>Find Your Dream Job Today — Powered by AI & Smart Recommendations</p>
-          <div className="role-buttons">
-            <button className="role-button admin" onClick={() => handleRoleChange('admin')}>
-              Admin
-            </button>
-            <button className="role-button employer" onClick={() => handleRoleChange('employer')}>
-              Employer
-            </button>
-            <button className="role-button jobseeker" onClick={() => handleRoleChange('jobseeker')}>
-              Job Seeker
-            </button>
+          <div className="hero-content">
+            <h1>🚀 Your Career, Supercharged</h1>
+            <p>
+              Discover top opportunities, connect with employers, and land your dream job 
+              with AI-powered recommendations & market insights.
+            </p>
+            <div className="role-buttons">
+              <button className="role-button admin" onClick={() => handleRoleChange('admin')}>Admin</button>
+              <button className="role-button employer" onClick={() => handleRoleChange('employer')}>Employer</button>
+              <button className="role-button jobseeker" onClick={() => handleRoleChange('jobseeker')}>Job Seeker</button>
+            </div>
           </div>
         </section>
 
         {/* Features Section */}
         <section className="features-section">
-          <h2>Why Choose Our Platform?</h2>
+          <h2>✨ Why Choose Our Platform?</h2>
           <div className="features-grid">
-            <div className="feature-card">
-              <h3>🔍 AI-Powered Job Matching</h3>
-              <p>Our smart recommendation system analyzes your profile and suggests jobs tailored to your skills, location, and career goals.</p>
+            {[
+              {
+                title: "🔍 AI-Powered Job Matching",
+                desc: "Get jobs that perfectly match your skills, experience, and career goals — powered by intelligent algorithms."
+              },
+              {
+                title: "📊 Real-Time Market Insights",
+                desc: "Stay updated with salary trends, demand analysis, and growth forecasts in your industry."
+              },
+              {
+                title: "⚡ Quick Apply",
+                desc: "Apply to multiple jobs in one click, saving you valuable time and increasing your chances."
+              },
+              {
+                title: "🤝 Networking Opportunities",
+                desc: "Connect directly with hiring managers and industry leaders to boost your career."
+              },
+              {
+                title: "🌎 Global Reach",
+                desc: "Explore remote and international job opportunities across various domains."
+              },
+              {
+                title: "🔒 Secure & Private",
+                desc: "Your personal data is safe with end-to-end encryption and secure access control."
+              }
+            ].map((feature, index) => (
+              <div className="feature-card" key={index}>
+                <h3>{feature.title}</h3>
+                <p>{feature.desc}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* Stats Section */}
+        <section className="stats-section">
+          <h2>📈 Our Impact</h2>
+          <div className="stats-grid">
+            <div className="stat-card">
+              <h3>50K+</h3>
+              <p>Active Job Listings</p>
             </div>
-            <div className="feature-card">
-              <h3>📊 Real-Time Market Insights</h3>
-              <p>Stay ahead with real-time job market trends, salary insights, and demand analysis to make informed career choices.</p>
+            <div className="stat-card">
+              <h3>120K+</h3>
+              <p>Successful Hires</p>
             </div>
-            <div className="feature-card">
-              <h3>⚡ Quick Apply</h3>
-              <p>Save time with one-click applications and instantly connect with employers looking for talent like you.</p>
-            </div>
-            <div className="feature-card">
-              <h3>🤝 Employer & Candidate Network</h3>
-              <p>Build connections with top companies and professionals in your industry to grow your career faster.</p>
+            <div className="stat-card">
+              <h3>500+</h3>
+              <p>Partner Companies</p>
             </div>
           </div>
         </section>
@@ -82,13 +114,42 @@ const Home = () => {
         <section className="image-section">
           <h2>Explore Opportunities</h2>
           <div className="job-images">
-            <img src={job1} alt="Job 1" className="job-image" onClick={handleImageClick} />
-            <img src={job2} alt="Job 2" className="job-image" onClick={handleImageClick} />
-            <img src={job3} alt="Job 3" className="job-image" onClick={handleImageClick} />
-            <img src={job4} alt="Job 4" className="job-image" onClick={handleImageClick} />
+            {[job1, job2, job3, job4].map((img, i) => (
+              <img key={i} src={img} alt={`Job ${i+1}`} className="job-image" onClick={handleImageClick} />
+            ))}
           </div>
         </section>
 
+        {/* Testimonials Section */}
+        <section className="testimonials-section">
+          <h2>💬 What People Say</h2>
+          <div className="testimonials-grid">
+  <div className="testimonial-card">
+    <p>
+      "This platform helped me land my dream job within 2 weeks! The AI recommendations were spot on."
+    </p>
+    <h4>- Surya M.</h4>
+  </div>
+  <div className="testimonial-card">
+    <p>
+      "As an employer, the quick apply and candidate matching system saved us hours of screening time."
+    </p>
+    <h4>- David R.</h4>
+  </div>
+  <div className="testimonial-card">
+    <p>
+      "The interface is so clean and easy to use. I found multiple job opportunities without feeling overwhelmed."
+    </p>
+    <h4>- Priya S.</h4>
+  </div>
+  <div className="testimonial-card">
+    <p>
+      "I’ve tried several job portals, but this one is the most efficient. The skill-based search is a game changer."
+    </p>
+    <h4>-  Aravind T.</h4>
+    </div>
+   </div>
+  </section>
       </div>
       <Footer />
     </>
